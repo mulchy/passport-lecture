@@ -25,7 +25,7 @@ MongoDB.once('open', function(){
 var app = express();
 
 app.use(session({
-  secret: process.env.SESSION_KEY,
+  secret: 'kitty',
   key: 'user',
   resave: true,
   saveUninitialized: false,
