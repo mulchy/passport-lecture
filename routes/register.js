@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function(req, res) {
-  User.create(req.body, function(err) {
+  User.create(req.body.username, req.body.password, function(err) {
     if (err) {
       console.log(err);
       res.sendStatus(500);
