@@ -42,5 +42,21 @@ describe('testing server login', function() {
 		.expect(302)
 		.expect('Location', 'views/success.html', done);
 	});
+
+	it('should not log a user in with the incorrect credentials', function (done){
+	    request(server)
+		.post('/login')
+		.send({username: 'ryan', password:'password2'})
+		.expect(302)
+		.expect('Location', 'views/failure.html', done);
+	});
+
+	it('should not log an unknown user in', function (done){
+	    request(server)
+		.post('/login')
+		.send({username: 'someoneelse', password:'password2'})
+		.expect(302)
+		.expect('Location', 'views/failure.html', done);
+	});
     });
 });
