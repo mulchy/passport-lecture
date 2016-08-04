@@ -10,7 +10,15 @@ var User = require('./models/user');
 var login = require('./routes/login');
 var register = require('./routes/register');
 
-var mongoURI = 'mongodb://localhost:27017/prime_example_passport';
+
+// don't let the tests access the real db
+var mongoURI;
+if (process.env.NODE_ENV == 'test') {
+    mongoURI = 'mongodb://localhost:27017/prime_example_passport_test';
+} else {
+    mongoURI = 'mongodb://localhost:27017/prime_example_passport';
+}
+
 
 var MongoDB = mongoose.connect(mongoURI).connection;
 
@@ -102,3 +110,5 @@ var port = process.env.PORT || 3000;
 var server = app.listen(port, function () {
   console.log('Server listening on ' + server.address().port);
 });
+
+module.exports = server;
