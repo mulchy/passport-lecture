@@ -1,3 +1,7 @@
+# use trusty beta to get a better C++ compiler for bcrypt
+sudo: required
+dist: trusty
+
 language: node_js
 node_js:
   - "6"
